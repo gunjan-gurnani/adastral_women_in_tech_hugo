@@ -1,0 +1,28 @@
+<table class="table mt-5 mb-5">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Grade</th>
+      <th>Number of Positions</th>
+      <th>Apply</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range $.Site.Data.vacancies.roles }}
+      <tr>
+        <td>{{ .title }}</td>
+        <td>{{ .grade }}</td>
+        <td>{{ .positions }}</td>
+        <td>
+          {{ if .taleo_id }}
+            <a href="https://bt.taleo.net/careersection/internal/jobdetail.ftl?lang=en&job={{ .taleo_id }}">View Job Description and Apply ({{ .taleo_id }})</a>
+          {{ end }}
+        </td>
+      </tr>
+    {{ else }}
+      <tr>
+        <td class="text-center" colspan="4"><i>Sorry, but we don't have any vacancies at the moment.</i></td>
+      </tr>
+    {{ end }}
+  </tbody>
+</table>

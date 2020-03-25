@@ -1,0 +1,49 @@
+{{ define "main" }}
+  <div class="bg-cover mb-5" style="margin-top: -24px; background-position-y: 56px; background-image: url('/images/btNOC.jpg');">
+    <div class="bg-black-60">
+      <div class="container d-flex justify-content-center align-items-center" style="height: 500px;">
+        <h1 class="display-4 text-light fade-in-slide">
+          {{ .Site.Params.home.heroText }}
+        </h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <article class="col-8">
+        <h2>About Us</h2>
+        <div class="lead">
+          {{ .Site.Params.home.about | markdownify }}
+        </div>
+      </article>
+      <aside class="col-4">
+        <h2>Latest News</h2>
+        {{ partial "timeline.html" (where $.Site.RegularPages "Section" "news") }}
+      </aside>
+    </div>
+  </div>
+{{ end }}
+
+{{ define "scripts" }}
+  {{ partial "site-scripts.html" . }}
+  <script>
+    $(function () {
+      var banner = $(".bg-cover");
+      if (banner.length > 0) {
+        // Initial offset
+        var initialOffset = parseInt(banner.css("background-position-y"), 10);
+        // Parallax effect
+        $(document).scroll(function () {
+          // Speed of effect
+          var speed = 2;
+          // Calculate offset
+          var yposition = window.pageYOffset / speed;
+          yposition = -yposition + initialOffset;
+          // Update CSS property
+          banner.css("background-position-y", yposition + "px");
+        });
+      }
+    });
+  </script>
+{{ end }}

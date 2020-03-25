@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <div class="container">
+    <header>
+      {{ if .Draft }}<span class="badge badge-secondary float-right">Draft</span>{{ end }}
+      <h1>
+        {{ .Title }}
+      </h1>
+    </header>
+    <article class="post-content">
+      {{ .Content }}
+    </article>
+  </div>
+{{ end }}

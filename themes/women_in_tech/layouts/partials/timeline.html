@@ -1,0 +1,9 @@
+<ul class="timeline">
+  {{ range . }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <div class="float-right">{{ .Date.Format "January 2, 2006" }}</div>
+      <p class="text-muted">{{ with .Description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+    </li>
+  {{ end }}
+</ul>

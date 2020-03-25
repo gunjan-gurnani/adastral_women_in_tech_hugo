@@ -1,0 +1,57 @@
+{{ define "main" }}
+  <div class="container">
+    <header>
+      <h1>
+        {{ .Title }}
+        {{ if .Draft }}<span class="h5"><span class="badge badge-secondary">Draft</span></span>{{ end }}
+      </h1>
+    </header>
+    <article class="post-content">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="members mb-3">
+            <!-- Start: Team members -->
+            <h2>The Team</h2>
+            <div class="row justify-content-center">
+              {{ range $.Params.members }}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                  {{ partial "team-member.html" . }}
+                </div>
+              {{ end }}
+            </div>
+            <!-- End: Team members -->
+          </div>
+
+          <!-- Start: About us -->
+          <div class="about">
+            <h2>About Us</h2>
+            {{ .Content }}
+          </div>
+          <!-- End: About us -->
+        </div>
+        <div class="col-md-4">
+          <!-- Start: Technologies -->
+          <div class="skills mb-4">
+            <h2>Technologies</h2>
+            {{ partial "team-skills.html" $.Params.skills }}
+          </div>
+          <!-- End: Technologies -->
+
+          <!-- Start: Projects -->
+          <div class="projects">
+            <h2>Projects</h2>
+            <ul class="list-unstyled">
+              {{ range where .Site.Pages "Params.team" .File.ContentBaseName }}
+                <li>
+                  <h5><a href="{{ .RelPermalink }}">{{ .Title }}</a></h5>
+                  <p>{{ .Description }}</p>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+          <!-- End: Projects -->
+        </div>
+      </div>
+    </article>
+  </div>
+{{ end }}

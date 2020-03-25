@@ -1,0 +1,17 @@
+<footer class="bg-dark mt-auto">
+  <div class="container">
+    <div class="d-flex justify-content-between py-5">
+      <a class="text-light" href="{{ .Site.BaseURL }}" >
+        &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+      </a>
+      <div>
+        <!-- social links -->
+        {{ with .Site.Params.workplaceLink }}
+          <a href="{{ . }}">
+            <img src="/images/Workplace_Were-On-Asset_Single-Line_White.png" width="190" height="30" alt="We're on Workplace" />
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</footer>
